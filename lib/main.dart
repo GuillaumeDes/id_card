@@ -7,7 +7,15 @@ void main() {
   ));
 }
 
-class Card extends StatelessWidget {
+class Card extends StatefulWidget {
+  @override
+  _CardState createState() => _CardState();
+}
+
+class _CardState extends State<Card> {
+
+  int level = 1;
+
   @override
   Widget build(BuildContext context) {
     return Scaffold(
@@ -18,6 +26,16 @@ class Card extends StatelessWidget {
         backgroundColor: Colors.amber[600],
         elevation: 10.0,
       ),
+        floatingActionButton: FloatingActionButton(
+          onPressed: () {
+            setState(() {
+              level += 1;
+            });
+          },
+          child: Icon(Icons.add),
+          backgroundColor: Colors.amber,
+        ),
+
         body: Padding(
         padding : EdgeInsets.fromLTRB(30, 40, 30, 0),
           child: Column(
@@ -61,7 +79,7 @@ class Card extends StatelessWidget {
               ),
               SizedBox(height: 10.0),
               Text(
-                  '30',
+                  '$level',
                   style : TextStyle(
                       color: Colors.amber[600],
                       letterSpacing: 1.5,
